@@ -22,14 +22,14 @@ function generatoreBombe (min, max) {
   return math;
 }
 
-
-
-for (var i = 0; i < 16; i++) {
-        bombe.push(generatoreBombe(1, 20))
-    }
-        console.log(bombe);
-
-
 // CREARE UN CICLO WHILE CHE CONTINUA A ITERARE FINCHE NON AVREMO 16 VALORI DIVERSI NELL'ARRAY USANDO INCLUDES
 
-while ()
+var contatore = 16;
+
+while (bombe.length < 16) {
+    var generatore = generatoreBombe(1, 100);
+    if (!bombe.includes(generatore)) {
+        bombe.push(generatore);
+    }
+}
+console.log(bombe);
