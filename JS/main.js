@@ -11,7 +11,7 @@
 
 
 
-// LISTA 16 NUMERI TRA 1 E 100
+// LISTA 16 NUMERI TRA 1 E 100 (BOMBE)
 
 var bombe = [];
 var math=generatoreBombe(1,5)
@@ -21,3 +21,15 @@ function generatoreBombe (min, max) {
    var math = Math.floor(Math.random () * ((max - min) + 1) + min);
   return math;
 }
+
+
+
+for (var i = 0; i < 16; i++) {
+        bombe.push(generatoreBombe(1, 20))
+    }
+        console.log(bombe);
+
+
+// CREARE UN CICLO WHILE CHE CONTINUA A ITERARE FINCHE NON AVREMO 16 VALORI DIVERSI NELL'ARRAY USANDO INCLUDES
+
+while ()
