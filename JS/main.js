@@ -1,54 +1,44 @@
-// GENERARE 16 NUMERI COMPUTER TRA 1 E 100
-// I NUMERI NON POSSONO ESSERE DUPLICATI
+// GENERAZIONE BOMBE (16 numeri casuali non ripetibili)
+// creare un array vuota e una funzione generatore numeri
 
-// LISTA 16 NUMERI TRA 1 E 100 (BOMBE)
+var bombe16 = [];
 
-var bombe = [];
-var math = generatoreBombe(1,5)
-// console.log(math);
-
-function generatoreBombe (min, max) {
-   var math = Math.floor(Math.random () * ((max - min) + 1) + min);
-  return math;
-}
-
-// CREARE UN CICLO WHILE CHE CONTINUA A ITERARE FINCHE NON AVREMO 16 VALORI DIVERSI NELL'ARRAY USANDO INCLUDES
-
-var contatoreBombe = 16;
-
-while (bombe.length < contatoreBombe) {
-    var generatore = generatoreBombe(1, 100);
-    if (! bombe.includes(generatore)) {
-        bombe.push(generatore);
+// creazione 16 numeri bombe
+for( var i = 0; i <= 3; i++) {
+    var bombeCasuali = generaNumeriCasuali(1, 100);
+    if (!bombe16.includes(bombeCasuali) ) {
+        bombe16.push(bombeCasuali);
     }
+    console.log(bombe16);
 }
-console.log(bombe);
 
+// CHIEDERE ALL'UTENTE DI INSERIRE 84 NUMERI NON RIPETIBILI TRA 1 E 100
+var arrayNumeriUtente = [];
 
-// L'UTENTE HA 84 TENTATIVI PER INSERIRE NUMERO TRA 1 E 100
-// IL NUMERO INSERITO NON PUO' ESSERE LO STESSO
-
-for (var i = 0; i < 5; i++) {
-    var numeriUtente = parseInt (prompt ("inserisci un numero") );
-    if (bombe[i] === numeriUtente) {
-        i = 5;
-        alert("hai perso");
+for ( var i = 0; i < 84; i++) {
+    var numeroUtente = parseInt (prompt ("inserisci un numero tra 1 e 100" ) );
+    while (arrayNumeriUtente.includes(numeroUtente)){
+        alert("numero già inserito, inseriscine un altro!");
+        break
     }
+    if ( numeroUtente > 100 || numeroUtente < 1 ) {
+        alert("scegli numero tra il range!");
+    }  else if (bombe16.includes(numeroUtente)) {
+        alert("bomba attivata, hai perso!");
+        alert("il tuo punteggio è: " + arrayNumeriUtente.length);
+        break
+    } else if (!bombe16.includes(numeroUtente) ) {
+        arrayNumeriUtente.push(numeroUtente);
+        alert("inserisci prossimo numero");
+    }
+ 
 }
 
-// var contatoreGiocatore = 5;
-// var numeroGiocate = 0;
-// while (numeroGiocate < contatoreGiocatore) {
-//     var numeroInserito = parseInt( prompt ("inserisci un numero") );
-//     if (bombe.includes() === numeroInserito) {
-//         console.log("hai perso");
-//     } 
-//     numeroGiocate++;
-// }
 
-// while ()
+// FUNZIONI
 
-// SE IL NUMERO E' NELLA LISTA DEI 16 NUMERI O IL GIOCATORE FINISCE I TENTATIVI LA PARTITA FINISCE
-
-// SE INSERISCE UN NUMERO TRA I 16 PERDE, SE FINISCE I TENTATIVI 
-// SENZA PESCARE I 16 NUMERI VINCE
+function generaNumeriCasuali (min, max) {
+    return Math.floor(Math.random() * ((max - min) +1) + min)
+}
+var numero = generaNumeriCasuali(1, 10);
+console.log(numero);
