@@ -51,7 +51,7 @@ console.log(listaBombe);
 var numeriUtente = [];
 
 for (var i = 0; numeriUtente.length < 84; i++) {
-    var inserisciNumero = parseInt (prompt ("inserisci un numero tra 1 e 100"));
+    var inserisciNumero = parseInt (prompt ("inserisci un numero tra 1 e " + max));
 
     if (listaBombe.includes(inserisciNumero)) {
         alert(" bomba attivata! hai perso!");
@@ -64,7 +64,7 @@ for (var i = 0; numeriUtente.length < 84; i++) {
         break;
     }
      else if (numeriUtente.includes(inserisciNumero)) {
-        alert("numero già inserito, inserisci di nuovo un numero tra 1 e 10");
+        alert("numero già inserito, inserisci di nuovo un numero tra 1 e " + max);
     }
     else if (!numeriUtente.includes(inserisciNumero) && !isNaN(inserisciNumero) && inserisciNumero < 11 && inserisciNumero > 0) {
         numeriUtente.push(inserisciNumero);
