@@ -1,41 +1,47 @@
-// lista 16 numeri casuali
-var listaNumeriCasuali = [];
-var size = 5;
 
-while (listaNumeriCasuali.length < size) {
-    var numeroCasuale = generaNumeri(1, 20);
-    if (!listaNumeriCasuali.includes(numeroCasuale)) {
-        listaNumeriCasuali.push(numeroCasuale);
+// LISTA BOMBE
+var listaBombe = [];
+
+while (listaBombe.length < 2  ) {
+    var number = numberGenerator(1,10);
+    if (!listaBombe.includes(number)) {
+        listaBombe.push(number);
     }
 }
-console.log(listaNumeriCasuali);
+console.log(listaBombe);
 
-
-// lista numeri inseriti dall'utente
+// NUMERI UTENTE
 var numeriUtente = [];
-// finchè il numero sarà diverso, tra 1 e 100 e non compreso nell'array, devo pusharlo all'interno dell'array
 
-for (var i = 0; i < 10; i++) {
-    var domanda = parseInt(prompt("inserire un numero tra 1 e 20"))
-    while(domanda < 1 || domanda > 20 || isNaN(domanda)) {
-        alert("inserisci un numero nel range giusto!");
+for (var i = 0; numeriUtente.length < 8; i++) {
+    var inserisciNumero = parseInt (prompt ("inserisci un numero tra 1 e 10"));
+
+    if (listaBombe.includes(inserisciNumero)) {
+        alert(" bomba attivata! hai perso!");
+        alert("sei sopravvissutto per: " + numeriUtente.length + " round" );
         break;
     }
-     if (listaNumeriCasuali.includes(domanda)) {
-        alert("hai attivato una bomba, hai perso!");
-        alert(numeriUtente.length + " tentativi riusciti")
+    else if (numeriUtente.length === 7) {
+        alert("complimenti, non hai attivato nessuna delle bombe! hai vinto!");
+        alert("sei sopravvissutto per: " + numeriUtente.length + " round" );
         break;
-    } else  if (!numeriUtente.includes(domanda) && !isNaN(domanda) && domanda > 0 && domanda < 20) {
-        alert("campo libero, procedi!");
-        numeriUtente.push(domanda);
-        console.log(domanda);
     }
+     else if (numeriUtente.includes(inserisciNumero)) {
+        alert("numero già inserito, inserisci di nuovo un numero tra 1 e 10");
+    }
+    else if (!numeriUtente.includes(inserisciNumero) && !isNaN(inserisciNumero) && inserisciNumero < 11 && inserisciNumero > 0) {
+        numeriUtente.push(inserisciNumero);
+    } else if (inserisciNumero > 10 || inserisciNumero < 1 ){
+        alert("inserisci un numero valido");
+    }
+
 }
 
 
+// FUNZIONI
+console.log(numeriUtente);
 
-// funzione per la creazione numeri casuali
-function generaNumeri (max,min) {
-    var risultato = (Math.floor(Math.random ()* (max-min) + 1) + min);
-    return risultato;
+// creare funzione con generatore numeri tra 1 e 10a
+function numberGenerator (min, max) {
+    return (Math.round(Math.random() * (max - min) + min));
 }
